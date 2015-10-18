@@ -15,7 +15,7 @@ class Pentry : UIViewController, UITableViewDelegate,UITableViewDataSource,AVCap
     
     @IBOutlet weak var tableViewReference: UITableView!
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
     
     override func viewDidLoad() {
@@ -151,41 +151,7 @@ class Pentry : UIViewController, UITableViewDelegate,UITableViewDataSource,AVCap
                 self.previewLayer.hidden = true
                 let data = metadataObj as! AVMetadataMachineReadableCodeObject
                 print("\(data.stringValue)")
-                
-                let url: NSURL = NSURL(string: "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=\(data.stringValue)")!
-                let request1: NSURLRequest = NSURLRequest(URL: url)
-                //self.testLabel.text = "test"
-                
-                let task = NSURLSession.sharedSession().dataTaskWithRequest(request1) {(data, response, error) in
-                    //let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-                    
-                    if(error != nil) {
-                        print("error: \(error)")
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            print("error form server")
-                        })
-                    } else {
-                        print(NSString(data: data!, encoding: NSUTF8StringEncoding))
-                        let jsonData = NSString(data: data!, encoding: NSUTF8StringEncoding)!.dataUsingEncoding(NSUTF8StringEncoding)!
-                        print( "data is received")
-                        
-                        
-                        
-                        do {
-                            let parsed = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.AllowFragments)
-                            //print(parsed[0]["ttl"])
-                            //print(parsed.count)
-                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                print(String(parsed))
-                            })
-                            //self.performSegueWithIdentifier("view2Segue",sender : nil)
-                            
-                        } catch {
-                            print("A JSON parsing error occurred, here are the details")
-                        }
-                    }
-                }
-                task!.resume()
+                let article = Article(id: data.stringValue)
             }
             
         }
