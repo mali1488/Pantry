@@ -26,8 +26,6 @@ class Article {
         //self.testLabel.text = "test"
         
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request1) {(data, response, error) in
-            //let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-            
             if(error != nil) {
                 print("error: \(error)")
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -40,7 +38,7 @@ class Article {
 
                 do {
                     let parsed = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.AllowFragments)
-                    //print(parsed[0]["ttl"])
+                    print(parsed["gtin"])
                     //print(parsed.count)
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         print(String(parsed))

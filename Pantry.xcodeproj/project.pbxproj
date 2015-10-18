@@ -14,6 +14,10 @@
 		CD4C54B61BC93EA80089F8A2 /* PantryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4C54B51BC93EA80089F8A2 /* PantryTests.swift */; };
 		CD4C54C11BC93EA80089F8A2 /* PantryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4C54C01BC93EA80089F8A2 /* PantryUITests.swift */; };
 		CD4C54CF1BC944A20089F8A2 /* Pentry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4C54CE1BC944A20089F8A2 /* Pentry.swift */; };
+		CDD503001BD3F9E0009DFA4B /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD502FF1BD3F9E0009DFA4B /* Article.swift */; settings = {ASSET_TAGS = (); }; };
+		CDF3F3991BD41742001B5278 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF3F3981BD41742001B5278 /* TabBarController.swift */; settings = {ASSET_TAGS = (); }; };
+		CDF3F39B1BD41A02001B5278 /* BarCodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF3F39A1BD41A02001B5278 /* BarCodeScanner.swift */; settings = {ASSET_TAGS = (); }; };
+		CDF3F39E1BD4215E001B5278 /* AlertMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF3F39D1BD4215E001B5278 /* AlertMessages.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		CD4C54C01BC93EA80089F8A2 /* PantryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantryUITests.swift; sourceTree = "<group>"; };
 		CD4C54C21BC93EA80089F8A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD4C54CE1BC944A20089F8A2 /* Pentry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pentry.swift; sourceTree = "<group>"; };
+		CDD502FF1BD3F9E0009DFA4B /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		CDF3F3981BD41742001B5278 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		CDF3F39A1BD41A02001B5278 /* BarCodeScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarCodeScanner.swift; sourceTree = "<group>"; };
+		CDF3F39D1BD4215E001B5278 /* AlertMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertMessages.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +105,11 @@
 		CD4C549F1BC93EA80089F8A2 /* Pantry */ = {
 			isa = PBXGroup;
 			children = (
+				CDD502FF1BD3F9E0009DFA4B /* Article.swift */,
+				CDF3F39D1BD4215E001B5278 /* AlertMessages.swift */,
 				CD4C54A01BC93EA80089F8A2 /* AppDelegate.swift */,
-				CD4C54CE1BC944A20089F8A2 /* Pentry.swift */,
+				CDF3F3981BD41742001B5278 /* TabBarController.swift */,
+				CDF3F39C1BD41A18001B5278 /* Tabs */,
 				CD4C54A41BC93EA80089F8A2 /* Main.storyboard */,
 				CD4C54A71BC93EA80089F8A2 /* Assets.xcassets */,
 				CD4C54A91BC93EA80089F8A2 /* LaunchScreen.storyboard */,
@@ -123,6 +134,15 @@
 				CD4C54C21BC93EA80089F8A2 /* Info.plist */,
 			);
 			path = PantryUITests;
+			sourceTree = "<group>";
+		};
+		CDF3F39C1BD41A18001B5278 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				CDF3F39A1BD41A02001B5278 /* BarCodeScanner.swift */,
+				CD4C54CE1BC944A20089F8A2 /* Pentry.swift */,
+			);
+			name = Tabs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,7 +277,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD4C54A11BC93EA80089F8A2 /* AppDelegate.swift in Sources */,
+				CDF3F3991BD41742001B5278 /* TabBarController.swift in Sources */,
+				CDF3F39B1BD41A02001B5278 /* BarCodeScanner.swift in Sources */,
 				CD4C54CF1BC944A20089F8A2 /* Pentry.swift in Sources */,
+				CDF3F39E1BD4215E001B5278 /* AlertMessages.swift in Sources */,
+				CDD503001BD3F9E0009DFA4B /* Article.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +512,7 @@
 				CD4C54C71BC93EA80089F8A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CD4C54C81BC93EA80089F8A2 /* Build configuration list for PBXNativeTarget "PantryTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +521,7 @@
 				CD4C54CA1BC93EA80089F8A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CD4C54CB1BC93EA80089F8A2 /* Build configuration list for PBXNativeTarget "PantryUITests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +530,7 @@
 				CD4C54CD1BC93EA80089F8A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
