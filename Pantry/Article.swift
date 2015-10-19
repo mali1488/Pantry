@@ -9,14 +9,14 @@
 import Foundation
 
 class Article {
-    var name : String?
-    var type : String?
-    var id : String?
-    var weight : Float?
-    var expired : Int?
+    var name : String!
+    var type : String!
+    var ean : String!
+    var weight : Float!
+    var expired : Int!
     
     init(id : String) {
-        self.id = id
+        self.ean = id
         let url: NSURL = NSURL(string: "https://api.outpan.com/v1/products/\(id)")!
         let request1: NSMutableURLRequest = NSMutableURLRequest(URL: url)
         let key : NSString = "a5035d0391db998498362ed22ea6eddc:"
@@ -38,8 +38,18 @@ class Article {
 
                 do {
                     let parsed = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.AllowFragments)
-                    print(parsed["gtin"])
-                    //print(parsed.count)
+                    let gtin : String! = parsed["gtin"] as! String
+                    if let aname = parsed["name"] as? String {
+                        print("name not nil")
+                        self.name = parsed["name"] as! String
+                    } else {
+                        print("name is nil")
+                        self.name = "Article not found"
+                    }
+                    // control in console
+                    print("gtin/ean : \(gtin)")
+                    print("name: \(self.name)")
+
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         print(String(parsed))
                     })

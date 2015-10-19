@@ -11,9 +11,13 @@ import UIKit
 
 class TabBarController: UITabBarController, UITabBarControllerDelegate {
 
-    var items = ["apple", "pineapple"]
-    var articles = []
+    var articles = [Article(id: "0013000001038")]
 
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
@@ -30,7 +34,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
             case "Pentry":
                 print("add item")
                 let destViewController : Pentry = self.viewControllers?[1] as! Pentry
-                destViewController.items = self.items
+                destViewController.articles = self.articles
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     destViewController.tableViewReference.reloadData()
                 })

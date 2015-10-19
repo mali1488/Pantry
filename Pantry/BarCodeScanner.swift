@@ -94,7 +94,7 @@ class BarCodeScanner : UIViewController,AVCaptureMetadataOutputObjectsDelegate{
                 print("\(data.stringValue)")
                 let article = Article(id: data.stringValue)
                 let tabController = self.tabBarController! as! TabBarController
-                tabController.items.append(data.stringValue)
+                tabController.articles.append(article)
                 
                 let alertController = UIAlertController(title: "Entry found", message:
                     "Added ean article with id \(data.stringValue) to pantry", preferredStyle: UIAlertControllerStyle.Alert)

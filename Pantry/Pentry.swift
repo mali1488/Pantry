@@ -5,7 +5,8 @@ import Foundation
 import UIKit
 
 class Pentry : UIViewController, UITableViewDelegate,UITableViewDataSource {
-    var items = ["Ströbröd","Vete mjöl","Strösocker","Bakpulver"]
+    var articles = []
+    var articleIndex : Int?
     
     @IBOutlet weak var tableViewReference: UITableView!
     
@@ -17,8 +18,8 @@ class Pentry : UIViewController, UITableViewDelegate,UITableViewDataSource {
         super.viewDidLoad()
         print("viedDidLoad")
         let tabController = self.tabBarController! as! TabBarController
-        print(tabController.items)
-        self.items = tabController.items
+        print(tabController.articles)
+        self.articles = tabController.articles
         
         self.tableViewReference.delegate = self
         self.tableViewReference.dataSource = self
@@ -29,14 +30,26 @@ class Pentry : UIViewController, UITableViewDelegate,UITableViewDataSource {
         self.tableViewReference.layer.cornerRadius = 5
         self.tableViewReference.layer.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0).CGColor
         self.tableViewReference.separatorColor = UIColor(white: 1, alpha: 0)
-        print("pentry loded itemscount\(self.items.count)")
+        print("pentry loded itemscount\(self.articles.count)")
+    }
+    
+    func details(sender:UIButton){
+        print("pressed details")
+        let cell = sender.superview as! UITableViewCell
+        let index = self.tableViewReference.indexPathForCell(cell)
+        print(index)
+        self.articleIndex = index?.row
+        print(self.articleIndex)
+        self.performSegueWithIdentifier("details", sender: self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let segueId = segue.identifier!
-        print("SEGUE")
         switch(segueId) {
-        case "a":
+        case "details":
+            let destController : Details =  segue.destinationViewController as! Details
+            destController.article = self.articles[self.articleIndex!] as! Article
+            destController.articles = self.articles
             break;
         default:
             break;
@@ -45,7 +58,7 @@ class Pentry : UIViewController, UITableViewDelegate,UITableViewDataSource {
     
     // -------- TableView functions --------
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.items.count
+        return self.articles.count
     }
     
     func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
@@ -54,32 +67,27 @@ class Pentry : UIViewController, UITableViewDelegate,UITableViewDataSource {
         self.performSegueWithIdentifier("details", sender: nil)
     }
     
-    func details(sender:UIButton){
-        let cell = sender.superview as! UITableViewCell
-        let index = self.tableViewReference.indexPathForCell(cell)
-    }
-    
-    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableViewReference!.dequeueReusableCellWithIdentifier("cell")
-        let name = self.items[indexPath.row]
+        let article = self.articles[indexPath.row] as! Article
+        let name = article.name
+        let ean = article.ean!
         let white = UIColor(red: 244/255, green: 244/255, blue:244/255, alpha: 1.0) as UIColor
-        cell!.textLabel?.text = "\(name)"
-        cell!.textLabel?.textColor = UIColor(red: 0.0, green: 0.0, blue:0.0, alpha: 1.0)
+        cell!.textLabel?.text = "\(name), ean: \(ean)"
+        //cell!.textLabel?.textColor = UIColor(red: 0.0, green: 0.0, blue:0.0, alpha: 1.0)
+        cell!.textLabel?.textColor = white
         cell!.alpha = 0
         let bgColorView = UIView()
         cell!.backgroundColor = UIColor(red: 64/255, green: 152/255, blue:156/255, alpha: 0.0)
         bgColorView.backgroundColor = UIColor(white: 1, alpha: 0)
         cell!.selectedBackgroundView = bgColorView
         
-        // AccessoryType can be : DetailButton, .Checkmark .None
-        //cell!.accessoryType = .DetailDisclosureButton
-        //cell!.tintColor = UIColor(red: 244/255, green: 244/255, blue:244/255, alpha: 1.0)
         let button   = UIButton(type: UIButtonType.System) as UIButton
         button.frame = CGRectMake(0, 0, 50, 50)
         button.backgroundColor =  UIColor(red: 0.0, green: 0.0, blue:0.0, alpha: 0.0)
-        button.setTitleColor(UIColor(red: 0.0, green: 0.0, blue:0.0, alpha: 1.0), forState: UIControlState.Normal)
+        //button.setTitleColor(UIColor(red: 0.0, green: 0.0, blue:0.0, alpha: 1.0), forState: UIControlState.Normal)
+        button.setTitleColor(white, forState: UIControlState.Normal)
         button.setTitle("Details", forState: UIControlState.Normal)
         //button.titleLabel?.textColor = UIColor(red: 0.0, green: 0.0, blue:0.0, alpha: 1.0)
         button.addTarget(self, action: "details:", forControlEvents: UIControlEvents.TouchUpInside)
